@@ -2,6 +2,7 @@ clear all;
 close all;
 clc;
 
+% Merequeteque
 % Definición del vector de frecuencias digitales normalizadas s en [-0.5, 0.5]
 ds = 0.001;
 s = -0.5 : ds : 0.5;
@@ -16,6 +17,8 @@ title('Inciso 1: Señal de entrada');
 xlabel('Muestras n');
 ylabel('Amplitud');
 pause();
+
+if 
 % Calculo de la TFTD de la señal cargada
 % x es (1 x N), n' es (N x 1), s es (1 x Ns) -&gt; n' \* s genera matriz (N x Ns)
 X = x * exp(-1j * 2 * pi * (n') * s);
