@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.11.15)  15 NOV 2026 23:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.11.15)  16 NOV 2026 00:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\def\ReportStartingPage{5}\input{Ejercicio2.ltx}
+**\def\ReportStartingPage{20}\input{Ejercicio2.ltx}
 (./Ejercicio2.ltx (/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size12.clo
@@ -174,9 +174,50 @@ File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 \Gin@req@height=\dimen159
 \Gin@req@width=\dimen160
 )
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count298
+\Gm@cntv=\count299
+\c@Gm@tempcnt=\count300
+\Gm@bindingoffset=\dimen161
+\Gm@wd@mp=\dimen162
+\Gm@odd@mp=\dimen163
+\Gm@even@mp=\dimen164
+\Gm@layoutwidth=\dimen165
+\Gm@layoutheight=\dimen166
+\Gm@layouthoffset=\dimen167
+\Gm@layoutvoffset=\dimen168
+\Gm@dimlist=\toks26
+)
+(/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip54
+\f@nch@offset@elh=\skip55
+\f@nch@offset@erh=\skip56
+\f@nch@offset@olh=\skip57
+\f@nch@offset@orh=\skip58
+\f@nch@offset@elf=\skip59
+\f@nch@offset@erf=\skip60
+\f@nch@offset@olf=\skip61
+\f@nch@offset@orf=\skip62
+\f@nch@height=\skip63
+\f@nch@footalignment=\skip64
+\f@nch@widthL=\skip65
+\f@nch@widthC=\skip66
+\f@nch@widthR=\skip67
+\@temptokenb=\toks27
+)
 (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count298
+\l__color_backend_stack_int=\count301
 )
 (./Ejercicio2_resolucion.aux
 LaTeX Info: Redefining \. on input line 8.
@@ -186,36 +227,36 @@ Package babel Info: 'spanish' activates 'spanish' shorthands.
 )
 \openout1 = `Ejercicio2_resolucion.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Info: Redefining \. on input line 9.
-LaTeX Info: Redefining \% on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Info: Redefining \. on input line 28.
+LaTeX Info: Redefining \% on input line 28.
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count299
-\scratchdimen=\dimen161
+\scratchcounter=\count302
+\scratchdimen=\dimen169
 \scratchbox=\box55
-\nofMPsegments=\count300
-\nofMParguments=\count301
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count302
-\MPscratchDim=\dimen162
-\MPnumerator=\count303
-\makeMPintoPDFobject=\count304
-\everyMPtoPDFconversion=\toks27
+\nofMPsegments=\count303
+\nofMParguments=\count304
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count305
+\MPscratchDim=\dimen170
+\MPnumerator=\count306
+\makeMPintoPDFobject=\count307
+\everyMPtoPDFconversion=\toks29
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -225,52 +266,86 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 14.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(72.2698pt, 452.96826pt, 72.2698pt)
+* v-part:(T,H,B)=(72.2698pt, 700.50723pt, 72.2698pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=452.96826pt
+* \textheight=633.50723pt
+* \oddsidemargin=-0.00018pt
+* \evensidemargin=-0.00018pt
+* \topmargin=-0.00018pt
+* \headheight=15.0pt
+* \headsep=12.0pt
+* \topskip=12.0pt
+* \footskip=18.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+LaTeX Font Info:    Trying to load font information for U+msa on input line 33.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 14.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<../Graficos/figura_03.png, id=1, 875.27pt x 656.4525pt>
-File: ../Graficos/figura_03.png Graphic file (type png)
-<use ../Graficos/figura_03.png>
-Package pdftex.def Info: ../Graficos/figura_03.png  used on input line 56.
-(pdftex.def)             Requested size: 350.99762pt x 263.24747pt.
- [5
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [6 <../Graficos/figura_03.
-png (PNG copy)>]
-<../Graficos/figura_04.png, id=21, 875.27pt x 656.4525pt>
-File: ../Graficos/figura_04.png Graphic file (type png)
-<use ../Graficos/figura_04.png>
-Package pdftex.def Info: ../Graficos/figura_04.png  used on input line 103.
-(pdftex.def)             Requested size: 350.99762pt x 263.24747pt.
- [7]
-[8 <../Graficos/figura_04.png (PNG copy)>]
-<../Graficos/figura_05.png, id=30, 875.27pt x 656.4525pt>
-File: ../Graficos/figura_05.png Graphic file (type png)
-<use ../Graficos/figura_05.png>
-Package pdftex.def Info: ../Graficos/figura_05.png  used on input line 141.
-(pdftex.def)             Requested size: 350.99762pt x 263.24747pt.
- [9] [10 <../Graficos/figura_05.png (PNG copy)>] [11]
-<../Graficos/figura_06.png, id=42, 875.27pt x 656.4525pt>
+<../Graficos/figura_06.png, id=1, 877.2775pt x 657.45625pt>
 File: ../Graficos/figura_06.png Graphic file (type png)
 <use ../Graficos/figura_06.png>
-Package pdftex.def Info: ../Graficos/figura_06.png  used on input line 267.
-(pdftex.def)             Requested size: 350.99762pt x 263.24747pt.
- [12] [13 <../Graficos/figura_06.png (PNG copy)>]
-<../Graficos/figura_07.png, id=49, 875.27pt x 656.4525pt>
+Package pdftex.def Info: ../Graficos/figura_06.png  used on input line 75.
+(pdftex.def)             Requested size: 407.66867pt x 305.52339pt.
+ [20{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+] [21 <../Graficos/figura_06.png (PNG copy)>]
+<../Graficos/figura_07.png, id=21, 877.2775pt x 657.45625pt>
 File: ../Graficos/figura_07.png Graphic file (type png)
 <use ../Graficos/figura_07.png>
-Package pdftex.def Info: ../Graficos/figura_07.png  used on input line 316.
-(pdftex.def)             Requested size: 350.99762pt x 263.24747pt.
- [14] [15 <../Graficos/figura_07.png (PNG copy)>] (./Ejercicio2_resolucion.aux
+Package pdftex.def Info: ../Graficos/figura_07.png  used on input line 122.
+(pdftex.def)             Requested size: 407.66867pt x 305.52339pt.
+
+[22] [23 <../Graficos/figura_07.png (PNG copy)>]
+<../Graficos/figura_08.png, id=30, 877.2775pt x 657.45625pt>
+File: ../Graficos/figura_08.png Graphic file (type png)
+<use ../Graficos/figura_08.png>
+Package pdftex.def Info: ../Graficos/figura_08.png  used on input line 160.
+(pdftex.def)             Requested size: 407.66867pt x 305.52339pt.
+ [24] [25 <../Graficos/figura_08.png (PNG copy)>] [26] [27]
+<../Graficos/figura_09.png, id=45, 877.2775pt x 610.28pt>
+File: ../Graficos/figura_09.png Graphic file (type png)
+<use ../Graficos/figura_09.png>
+Package pdftex.def Info: ../Graficos/figura_09.png  used on input line 286.
+(pdftex.def)             Requested size: 407.66867pt x 283.60033pt.
+ [28 <../Graficos/figura_09.png (PNG copy)>]
+<../Graficos/figura_10.png, id=49, 875.27pt x 656.4525pt>
+File: ../Graficos/figura_10.png Graphic file (type png)
+<use ../Graficos/figura_10.png>
+Package pdftex.def Info: ../Graficos/figura_10.png  used on input line 338.
+(pdftex.def)             Requested size: 407.66867pt x 305.7481pt.
+
+[29] [30 <../Graficos/figura_10.png (PNG copy)>] [31]
+(./Ejercicio2_resolucion.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 )
@@ -280,19 +355,19 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4321 strings out of 469453
- 64871 string characters out of 5469036
- 481766 words of memory out of 5000000
- 32955 multiletter control sequences out of 15000+600000
+ 5232 strings out of 469453
+ 79610 string characters out of 5469036
+ 507341 words of memory out of 5000000
+ 33851 multiletter control sequences out of 15000+600000
  638837 words of font info for 67 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 61i,11n,68p,739b,365s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 61i,12n,68p,740b,386s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/nico/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> <
 /home/nico/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </hom
 e/nico/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/ni
 co/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/nico/.
-texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/nico/.texl
-ive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk></usr/share/texmf-dist
+texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/nico/.texl
+ive/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk></usr/share/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
@@ -301,10 +376,10 @@ f-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pf
 b>
-Output written on Ejercicio2_resolucion.pdf (11 pages, 351363 bytes).
+Output written on Ejercicio2_resolucion.pdf (12 pages, 352079 bytes).
 PDF statistics:
- 321 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
+ 326 PDF objects out of 1000 (max. 8388607)
+ 79 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

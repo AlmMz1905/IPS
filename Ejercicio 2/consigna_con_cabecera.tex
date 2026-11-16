@@ -1,0 +1,42 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{graphicx}
+\providecommand{\PromptPage}{4}
+\providecommand{\PromptPrintedPage}{19}
+
+\begin{document}
+\pdfpagewidth=210mm
+\pdfpageheight=297mm
+\hoffset=-1in
+\voffset=-1in
+\setbox0=\hbox{%
+    \includegraphics[page=\PromptPage,width=\paperwidth,height=\paperheight]{../Material/PU1.pdf}%
+    \kern-\paperwidth
+    \raisebox{\dimexpr\paperheight-58pt\relax}[0pt][0pt]{%
+        \colorbox{white}{%
+            \makebox[\dimexpr\paperwidth-6pt\relax][s]{%
+                \rule{0pt}{18pt}%
+                \hspace*{2.54cm}%
+                \small Facultad de Ingeniería%
+                \hfill
+                \small UNLP IPS 2026%
+                \hspace*{2.54cm}%
+            }%
+        }%
+    }%
+    \kern-\paperwidth
+    \raisebox{20pt}[0pt][0pt]{%
+        \colorbox{white}{%
+            \makebox[\paperwidth][r]{%
+                \rule{0pt}{24pt}%
+                \hspace*{2.54cm}%
+                \PromptPrintedPage
+                \hspace*{2.54cm}%
+            }%
+        }%
+    }%
+}
+\shipout\box0
+\end{document}

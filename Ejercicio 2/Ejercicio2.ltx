@@ -4,7 +4,26 @@
 \usepackage[spanish]{babel}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
-\providecommand{\ReportStartingPage}{5}
+\usepackage[a4paper,margin=2.54cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\providecommand{\ReportStartingPage}{20}
+
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{12pt}
+\setlength{\footskip}{18pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Facultad de Ingeniería}
+\fancyhead[R]{UNLP IPS 2026}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyhead[L]{Facultad de Ingeniería}
+    \fancyhead[R]{UNLP IPS 2026}
+    \fancyfoot[R]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
 
 \begin{document}
 \setcounter{page}{\ReportStartingPage}
@@ -18,7 +37,7 @@ La señal $h_A[n]$ retornada por la función hcanald.m representa la respuesta i
 \subsection*{Inciso 1: Respuesta impulsional, ecuación en diferencias y estabilidad}
 
 \subsubsection*{Procedimiento y obtención de $h_A[n]$}
-Para el n\'umero de alumno configurado en el script usamos el de Nicol\'as (quien se encargo de la resoluci\'on), \texttt{numAl = 025320}, se ejecut\'o \texttt{[nh,h\_A] = hcanald(numAl)}. La funci\'on devuelve la respuesta impulsional del canal y el vector de instantes asociado. En la Figura 20 se muestra la respuesta obtenida con el comando \texttt{stem}.
+Para el n\'umero de alumno configurado en el script usamos el de Nicol\'as (quien se encargo de la resoluci\'on), \texttt{numAl = 025320}, se ejecut\'o \texttt{[nh,h\_A] = hcanald(numAl)}. La funci\'on devuelve la respuesta impulsional del canal y el vector de instantes asociado. En la Figura 14 se muestra la respuesta obtenida con el comando \texttt{stem}.
 
 En el gr\'afico se distinguen el camino directo y dos ecos. El instante indica el retardo de cada copia, mientras que la amplitud indica su peso relativo respecto de la se\~nal original:
 \begin{itemize}
@@ -50,10 +69,10 @@ La delta desplazada cumple:
 \end{equation*}
 As\'i, cada t\'ermino representa una copia retrasada y escalada.
 
-\setcounter{figure}{19}
+\setcounter{figure}{13}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{../Graficos/figura_03.png}
+    \includegraphics[width=0.9\textwidth]{../Graficos/figura_06.png}
     \caption{Respuesta impulsional del canal obtenida con \texttt{hcanald.m}.}
 \end{figure}
 
@@ -92,7 +111,7 @@ La respuesta impulsional se verifica excitando el canal con una delta. La convol
 \begin{equation}
     h_{\text{verif}}[n] = \delta[n]*h_A[n] = h_A[n]
 \end{equation}
-En el script se construy\'o una delta con la misma longitud que $h_A[n]$, se calcul\'o \texttt{canal\_ecos(delta,h\_A)} y se recort\'o el resultado a la longitud de referencia. Luego se obtuvo el error m\'aximo muestra a muestra:
+En el script se construy\'o una delta con la misma longitud que $h_A[n]$, se llam\'o a la funci\'on \texttt{canal\_ecos} con los argumentos \texttt{delta} y \texttt{h\_A}, y se recort\'o el resultado a la longitud de referencia. Luego se obtuvo el error m\'aximo muestra a muestra:
 \begin{equation}
     E_{\max}=\max_n|h_A[n]-h_{\text{verif}}[n]|=0.000000\mathrm{e}{+00}=0
 \end{equation}
@@ -100,7 +119,7 @@ El error nulo indica que, para esta entrada, la implementaci\'on num\'erica repr
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{../Graficos/figura_04.png}
+    \includegraphics[width=0.9\textwidth]{../Graficos/figura_07.png}
     \caption{Comparaci\'on entre la respuesta de referencia y la salida del canal ante una delta.}
 \end{figure}
 
@@ -138,7 +157,7 @@ La duraci\'on adicional corresponde a la cola producida por los retardos y la co
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{../Graficos/figura_05.png}
+    \includegraphics[width=0.9\textwidth]{../Graficos/figura_08.png}
     \caption{Se\~nal de audio original y salida del canal con ecos.}
 \end{figure}
 
@@ -264,7 +283,7 @@ Este filtro elimina el residuo en $3D$ que aparec\'ia con el ecualizador anterio
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{../Graficos/figura_06.png}
+    \includegraphics[width=0.9\textwidth]{../Graficos/figura_09.png}
     \caption{Respuestas impulsionales de las cascadas con los dos ecualizadores.}
 \end{figure}
 
@@ -311,9 +330,12 @@ Los errores relativos obtenidos son:
 \end{align*}
 La reducci\'on del error relativo concuerda con la cancelaci\'on del residuo en $26460$ muestras. Esta medida compara las muestras iniciales alineadas y no reemplaza la escucha perceptual; las salidas completas incluyen adem\'as una cola de convoluci\'on.
 
+\subsubsection*{Observaci\'on auditiva}
+El audio original se percibe como un golpe de campana seguido por tres repeticiones claramente distinguibles debidas a los ecos. Con el ecualizador de dos ramas, desde la segunda repetici\'on los ecos se aten\'uan: a\'un se escuchan, pero con menor volumen. Con el ecualizador de tres ramas todav\'ia se distingue un primer eco, aunque queda muy atenuado y pr\'acticamente se confunde con el timbre original.
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{../Graficos/figura_07.png}
+    \includegraphics[width=0.9\textwidth]{../Graficos/figura_10.png}
     \caption{Comparaci\'on temporal entre el audio original y las salidas recuperadas.}
 \end{figure}
 
