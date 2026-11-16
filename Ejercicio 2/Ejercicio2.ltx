@@ -1,0 +1,328 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\providecommand{\ReportStartingPage}{5}
+
+\begin{document}
+\setcounter{page}{\ReportStartingPage}
+
+\section*{Ejercicio 2: Análisis del canal con ecos}
+
+La señal $h_A[n]$ retornada por la función hcanald.m representa la respuesta impulsional de un sistema SLID FIR que modela el comportamiento de un canal digital con dos ecos.
+
+1. Grafique esta respuesta al impulso e interprete en qué consiste el modelo mencionado. Escriba la ecuación en diferencias que representa el sistema. ¿Qué puede decir acerca de la estabilidad del sistema?
+
+\subsection*{Inciso 1: Respuesta impulsional, ecuación en diferencias y estabilidad}
+
+\subsubsection*{Procedimiento y obtención de $h_A[n]$}
+Para el n\'umero de alumno configurado en el script usamos el de Nicol\'as (quien se encargo de la resoluci\'on), \texttt{numAl = 025320}, se ejecut\'o \texttt{[nh,h\_A] = hcanald(numAl)}. La funci\'on devuelve la respuesta impulsional del canal y el vector de instantes asociado. En la Figura 20 se muestra la respuesta obtenida con el comando \texttt{stem}.
+
+En el gr\'afico se distinguen el camino directo y dos ecos. El instante indica el retardo de cada copia, mientras que la amplitud indica su peso relativo respecto de la se\~nal original:
+\begin{itemize}
+    \item Camino directo: la se\~nal llega sin retardo y con amplitud unitaria.
+    \[
+        n_0=0,\qquad A_0=1
+    \]
+    \item Primer eco: su amplitud es la mitad de la del camino directo.
+    \[
+        n_1=8820,\qquad \alpha_1=0.5
+    \]
+    \item Segundo eco: su amplitud es un cuarto de la del camino directo.
+    \[
+        n_2=17640,\qquad \alpha_2=0.25
+    \]
+\end{itemize}
+
+Por lo tanto, usando deltas de Kronecker, la respuesta impulsional se escribe como:
+\begin{equation}
+    h_A[n] = \delta[n] + 0.5\,\delta[n-8820] + 0.25\,\delta[n-17640]
+\end{equation}
+La delta desplazada cumple:
+\begin{equation*}
+    \delta[n-k]=
+    \begin{cases}
+        1, & n=k,\\
+        0, & n\ne k.
+    \end{cases}
+\end{equation*}
+As\'i, cada t\'ermino representa una copia retrasada y escalada.
+
+\setcounter{figure}{19}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../Graficos/figura_03.png}
+    \caption{Respuesta impulsional del canal obtenida con \texttt{hcanald.m}.}
+\end{figure}
+
+\subsubsection*{Ecuaci\'on en diferencias}
+La salida de un sistema SLID se calcula convolucionando la entrada con su respuesta impulsional. Al reemplazar $h_A[n]$ por sus tres componentes, resulta:
+\begin{align}
+    y[n] &= x[n]*h_A[n] \\
+         &= x[n] + 0.5\,x[n-8820] + 0.25\,x[n-17640]
+\end{align}
+La salida es la suma de la muestra actual y dos copias retardadas. Sus retardos y amplitudes son:
+\begin{equation*}
+    (n_1,\alpha_1)=(8820,0.5),\qquad
+    (n_2,\alpha_2)=(17640,0.25)
+\end{equation*}
+
+\subsubsection*{An\'alisis de estabilidad EA/SA}
+Un sistema SLID es estable entrada acotada / salida acotada si la suma de los valores absolutos de su respuesta impulsional es finita. En este canal solo hay tres muestras no nulas, por lo que la cuenta se reduce a:
+\begin{align}
+    \sum_{n=-\infty}^{\infty}|h_A[n]|
+    &= |1|+|0.5|+|0.25| \\
+    &= 1+0.5+0.25 = 1.75 < \infty
+\end{align}
+El resultado es finito; por el criterio de sumabilidad absoluta, \textbf{el canal es estable EA/SA}.
+
+
+
+
+
+
+2. Escriba en Octave una función que implemente un sistema con esta ecuación en diferencias. Verifique que este sistema tiene la misma respuesta impulsional que la obtenida en 1.
+
+\subsection*{Inciso 2: Verificaci\'on de la implementaci\'on}
+
+\subsubsection*{Procedimiento con el impulso de Kronecker}
+La respuesta impulsional se verifica excitando el canal con una delta. La convoluci\'on de cualquier secuencia con una delta unitaria reproduce esa secuencia:
+\begin{equation}
+    h_{\text{verif}}[n] = \delta[n]*h_A[n] = h_A[n]
+\end{equation}
+En el script se construy\'o una delta con la misma longitud que $h_A[n]$, se calcul\'o \texttt{canal\_ecos(delta,h\_A)} y se recort\'o el resultado a la longitud de referencia. Luego se obtuvo el error m\'aximo muestra a muestra:
+\begin{equation}
+    E_{\max}=\max_n|h_A[n]-h_{\text{verif}}[n]|=0.000000\mathrm{e}{+00}=0
+\end{equation}
+El error nulo indica que, para esta entrada, la implementaci\'on num\'erica reproduce la respuesta impulsional entregada por \texttt{hcanald.m}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../Graficos/figura_04.png}
+    \caption{Comparaci\'on entre la respuesta de referencia y la salida del canal ante una delta.}
+\end{figure}
+
+
+
+
+
+
+Por otra parte, el comando:
+[x, fs] = audioread('audio.wav');
+permite cargar un archivo de audio (en este caso, el provisto entre los archivos de la presente práctica) en la variable x. La variable fs indica la frecuencia de muestreo de la señal, concepto que estudiaremos más adelante. Como cualquier otra variable, se puede graficar utilizando el comando plot(x), y es posible escuchar la señal mediante el comando:
+sound(x,fs);
+
+3. Usando la función escrita en 2, halle la salida del sistema (que llamaremos y) cuando se aplica a su entrada la señal de audio x. ¿Cómo se escucha esta señal? Grafique la señal de entrada y de salida en el tiempo.
+
+\subsection*{Inciso 3: Procesamiento de la se\~nal de audio}
+
+\subsubsection*{Carga y aplicaci\'on del canal}
+El archivo de audio se carg\'o con la funci\'on \texttt{audioread}, que devuelve la matriz de muestras $x$ y la frecuencia de muestreo $f_s$. La se\~nal es est\'ereo y tiene dos columnas, por lo que el canal se aplic\'o por separado a cada canal. La frecuencia de muestreo es $f_s=48000$ Hz. Para cada canal $c$, la salida se calcul\'o mediante:
+\begin{equation*}
+    y_c[n]=x_c[n]*h_A[n]
+\end{equation*}
+
+La respuesta impulsional tiene $26460$ muestras, de modo que, para una entrada de $47668$ muestras, la longitud de la convoluci\'on es:
+\begin{align*}
+    N_y &= N_x+N_{h_A}-1 \\
+        &= 47668+26460-1 \\
+        &= 74127\text{ muestras por canal}
+\end{align*}
+Por eso la salida est\'ereo $y$ tiene dimensiones:
+\[
+    74127\times2
+\]
+La duraci\'on adicional corresponde a la cola producida por los retardos y la convoluci\'on; no es un cambio en la frecuencia de muestreo. La se\~nal distorsionada se reprodujo mediante la funci\'on \texttt{sound} usando la misma frecuencia de muestreo.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../Graficos/figura_05.png}
+    \caption{Se\~nal de audio original y salida del canal con ecos.}
+\end{figure}
+
+\subsubsection*{An\'alisis de un ecualizador de una rama retardada}
+Antes de usar filtros con varias ramas, se analiza el caso de un canal con un solo eco:
+\begin{equation}
+    h_c[n]=\delta[n]+\alpha_1\,\delta[n-n_0]
+\end{equation}
+Se propone un ecualizador con una rama retardada:
+\begin{equation*}
+    h_{e1}[n]=\delta[n]+\beta_1\delta[n-n_1]
+\end{equation*}
+Al convolucionar ambos sistemas se obtiene:
+\begin{equation}
+    (h_c*h_{e1})[n]=\delta[n]+\alpha_1\delta[n-n_0]
+    +\beta_1\delta[n-n_1]+\alpha_1\beta_1\delta[n-(n_0+n_1)]
+\end{equation}
+Para cancelar el primer eco, las dos ramas deben coincidir en retardo y sus amplitudes deben sumar cero:
+\begin{align*}
+    n_1 &= n_0 \\
+    \alpha_1+\beta_1 &= 0 \\
+    \beta_1 &= -\alpha_1
+\end{align*}
+Con esta elección:
+\begin{align}
+    h_c*h_{e1} &= \delta[n]-\alpha_1^2\,\delta[n-2n_0]
+\end{align}
+La corrección no es perfecta porque la multiplicación de las dos ramas genera un eco residual:
+\begin{equation*}
+    -\alpha_1^2\,\delta[n-2n_0]
+\end{equation*}
+Se puede agregar una segunda rama con amplitud $+\alpha_1^2$ en ese retardo:
+\begin{equation}
+    h_{e,\mathrm{corr}}[n]=\delta[n]-\alpha_1\,\delta[n-n_0]
+    +\alpha_1^2\,\delta[n-2n_0]
+\end{equation}
+En ese caso, la cascada queda:
+\begin{equation*}
+    (h_c*h_{e,\mathrm{corr}})[n]
+    =\delta[n]+\alpha_1^3\delta[n-3n_0]
+\end{equation*}
+El residuo se desplaza y reduce otro factor $\alpha_1$, aunque no desaparece por completo.
+
+
+
+
+
+
+Una forma de intentar corregir el efecto que introduce el canal consiste en colocar un filtro FIR en cascada con el canal intentando que la respuesta impulsional total se aproxime lo más posible a una única delta de Kronecker, ¿Por qué querríamos lograr esto?. Por ejemplo, si la respuesta impulsional del canal fuese hc[n]=[n]+1[n-n0], un filtro con una sóla rama de retardo sería de la forma y[n]=x[n]+1x[n-n1]. Analizando la respuesta impulsional de la cascada, ¿Qué efecto tiene este sistema? ¿Qué valores de 1 y $n_1$ logran la mejor corrección? ¿Por qué la corrección no es perfecta? ¿Cómo añadiría una segunda rama de retardos que mejore esto?
+4. Con esta idea implemente un sistema que intente corregir el efecto del canal. Genere un filtro con 2 ramas de retardo y otro con 3 ramas de retardo. En cada caso, explicite la ecuación en diferencias de los filtros y grafique la respuesta impulsional de la cascada (canal + filtro).
+
+\subsection*{Inciso 4: Dise\~no de los filtros ecualizadores}
+
+\subsubsection*{Procedimiento y objetivo}
+Se busca que la respuesta impulsional de la cascada entre el canal y el ecualizador se aproxime a una delta:
+\begin{equation}
+    h_A[n]*h_e[n]\approx\delta[n]
+\end{equation}
+Si la cascada fuera una delta, la salida conservar\'ia la forma de la entrada sin ecos. Para simplificar las cuentas, se define:
+\[
+    D=8820\text{ muestras}
+\]
+Con esta notaci\'on, el canal se expresa como:
+\begin{equation}
+    h_A[n]=\delta[n]+0.5\,\delta[n-D]+0.25\,\delta[n-2D]
+\end{equation}
+
+\subsubsection*{Filtro con dos ramas retardadas}
+El primer ecualizador tiene un camino directo y dos ramas retardadas, ubicadas en $D$ y $2D$. Sus coeficientes retardados tienen signo opuesto a los ecos del canal:
+\begin{align}
+    h_{e2}[n] &= \delta[n]-0.5\,\delta[n-D]-0.25\,\delta[n-2D] \\
+    y_{e2}[n] &= x_e[n]-0.5\,x_e[n-D]-0.25\,x_e[n-2D]
+\end{align}
+En la convoluci\'on, los retardos se suman y las amplitudes de cada par de ramas se multiplican. Las contribuciones en cada retardo son:
+\begin{align*}
+    n=D:   &\quad 0.5-0.5=0 \\
+    n=2D:  &\quad 0.25-0.25-0.25=-0.25 \\
+    n=3D:  &\quad 0.5(-0.25)+0.25(-0.5)=-0.25 \\
+    n=4D:  &\quad 0.25(-0.25)=-0.0625
+\end{align*}
+La respuesta resultante es:
+\begin{align}
+    h_{\text{cascada,2}}[n] &= (h_A*h_{e2})[n] \\
+     &= \delta[n]-0.25\,\delta[n-2D]-0.25\,\delta[n-3D] \\
+     &\quad -0.0625\,\delta[n-4D] \\
+     &= \delta[n]-0.25\,\delta[n-17640]-0.25\,\delta[n-26460] \\
+     &\quad -0.0625\,\delta[n-35280]
+\end{align}
+El eco ubicado en $D$ se anula, pero quedan tres residuos en retardos posteriores. La amplitud del último residuo se obtiene como:
+\begin{equation*}
+    0.25(-0.25)=-0.0625=-\frac{1}{16}
+\end{equation*}
+
+\subsubsection*{Filtro con tres ramas retardadas}
+El segundo ecualizador conserva las dos ramas del filtro anterior y agrega una tercera rama en el retardo:
+\[
+    3D=26460\text{ muestras}
+\]
+El residuo del primer ecualizador en ese punto es $-0.25$, por lo que se elige un coeficiente $+0.25$ para cancelarlo:
+\begin{align}
+    h_{e3}[n] &= \delta[n]-0.5\,\delta[n-D]-0.25\,\delta[n-2D]
+    +0.25\,\delta[n-3D] \\
+    y_{e3}[n] &= x_e[n]-0.5\,x_e[n-D]-0.25\,x_e[n-2D]
+    +0.25\,x_e[n-3D]
+\end{align}
+En la convoluci\'on, las contribuciones de cada retardo son:
+\begin{align*}
+    n=D:   &\quad 0.5-0.5=0 \\
+    n=2D:  &\quad 0.25-0.25-0.25=-0.25 \\
+    n=3D:  &\quad -0.25+0.25=0 \\
+    n=4D:  &\quad -0.0625+0.125=0.0625 \\
+    n=5D:  &\quad 0.25(0.25)=0.0625
+\end{align*}
+Por lo tanto:
+\begin{align}
+    h_{\text{cascada,3}}[n] &= (h_A*h_{e3})[n] \\
+    &= \delta[n]-0.25\,\delta[n-2D] \\
+    &\quad +0.0625\,\delta[n-4D]+0.0625\,\delta[n-5D] \\
+    &= \delta[n]-0.25\,\delta[n-17640] \\
+    &\quad +0.0625\,\delta[n-35280]+0.0625\,\delta[n-44100]
+\end{align}
+Este filtro elimina el residuo en $3D$ que aparec\'ia con el ecualizador anterior. Permanecen residuos en $2D$, $4D$ y $5D$, por lo que la cancelaci\'on sigue sin ser perfecta.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../Graficos/figura_06.png}
+    \caption{Respuestas impulsionales de las cascadas con los dos ecualizadores.}
+\end{figure}
+
+
+
+
+
+
+
+5. Filtre la señal y con estos sistemas y escuche como suena. Compare cada una de estas señales con la señal x original.
+
+\subsection*{Inciso 5: Filtrado y comparaci\'on de resultados}
+
+\subsubsection*{Procedimiento de filtrado}
+Las se\~nales recuperadas se calcularon convolucionando la salida distorsionada $y[n]$ con cada ecualizador:
+\begin{align}
+    y_{\text{rec2}}[n] &= (y*h_{e2})[n]=(x*h_A*h_{e2})[n] \\
+    y_{\text{rec3}}[n] &= (y*h_{e3})[n]=(x*h_A*h_{e3})[n]
+\end{align}
+La igualdad de la derecha se obtiene reemplazando la se\~nal distorsionada por su expresi\'on como convoluci\'on con el canal y usando la propiedad asociativa. En el script se proces\'o cada columna del audio por separado y se reprodujeron ambas salidas a una frecuencia de muestreo de $48000$ Hz. Las longitudes de las se\~nales recuperadas son:
+\begin{align*}
+    N_{y_{\mathrm{rec2}}} &= 74127+17641-1=91767\text{ muestras por canal} \\
+    N_{y_{\mathrm{rec3}}} &= 74127+26461-1=100587\text{ muestras por canal}
+\end{align*}
+
+Como medida num\'erica de comparaci\'on, se calcul\'o el error relativo entre las primeras $N_x$ muestras de cada se\~nal recuperada y el audio original. Para tratar las dos columnas est\'ereo como una sola secuencia de muestras, se apilan sus valores en vectores. La norma 2 de un vector es la ra\'iz cuadrada de la energ\'ia de la se\~nal:
+\begin{equation}
+    E_{\mathrm{rel}}=
+    \frac{\left\|\operatorname{vec}\!\left(y_{\mathrm{rec}}(1:N_x,:)-x\right)\right\|_2}
+         {\left\|\operatorname{vec}(x)\right\|_2}
+    =\sqrt{\frac{E_{\mathrm{error}}}{E_x}},
+    \qquad N_x=47668
+\end{equation}
+En Octave, \texttt{(:)} apila las columnas en un vector y \texttt{norm} calcula su norma eucl\'idea:
+\begin{verbatim}
+error_rec2 = y_rec2(1:size(x, 1), :) - x;
+E_rel2 = norm(error_rec2(:)) / norm(x(:));
+\end{verbatim}
+Para el ecualizador de tres ramas se aplica el mismo c\'alculo usando \texttt{y\_rec3}.
+Los errores relativos obtenidos son:
+\begin{align*}
+    E_{\mathrm{rel},2} &= 0.3032=30.32\% \\
+    E_{\mathrm{rel},3} &= 0.2562=25.62\%
+\end{align*}
+La reducci\'on del error relativo concuerda con la cancelaci\'on del residuo en $26460$ muestras. Esta medida compara las muestras iniciales alineadas y no reemplaza la escucha perceptual; las salidas completas incluyen adem\'as una cola de convoluci\'on.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../Graficos/figura_07.png}
+    \caption{Comparaci\'on temporal entre el audio original y las salidas recuperadas.}
+\end{figure}
+
+\subsubsection*{Conclusiones}
+\begin{itemize}
+    \item El canal suma al audio dos copias retardadas, con amplitudes $0.5$ y $0.25$.
+    \item El ecualizador con dos ramas retardadas anula el primer eco, aunque deja componentes residuales en $17640$, $26460$ y $35280$ muestras.
+    \item El ecualizador con tres ramas retardadas elimina el residuo en $26460$ muestras. Permanecen residuos de amplitud $-0.25$ en $17640$ muestras y $+0.0625$ en $35280$ y $44100$ muestras.
+    \item Por lo tanto, la segunda salida puede reducir el efecto de los ecos, pero no es exactamente igual a la entrada. La escucha y los gr\'aficos permiten comparar el resultado; la cola adicional de la convoluci\'on tambi\'en debe tenerse en cuenta.
+\end{itemize}
+
+\end{document}
