@@ -1,4 +1,6 @@
-%Fncion del sistema 1 de la ecuación en diferencia
+% Funcion del sistema 1 de la ecuación en diferencia
+% y[n] = 1/2x[n] + 1/2x[n-1]
+% Es un filtro FIR pasa-bajos
 
 function y = sistema1(x)
    N = length(x); %Calcula la longitud del vector x
